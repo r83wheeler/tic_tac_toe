@@ -1,32 +1,26 @@
 
-function run(){
-    console.log("im in the function");
-}
+var app = document.getElementById('app')
 
-const test = document.getElementById("myContainer");
-const newDiv = document.createElement("div");
-newDiv.textContent="Hello Phoenix";
-newDiv.className="border";
-newDiv.classList.add("col4");
-newDiv.onclick=run;
+function generateBoard() {
 
-test.appendChild(newDiv);
+    const container = document.createElement("div");
+    container.className = "container ";
 
-console.log(test);
-console.log(newDiv);
+    const row = document.createElement("div");
+    row.className = "row";
 
-var View = {
-    //update the HTML
-    render: function(){
+    for (let index = 0; index < 9; index++) {
+        const col = document.createElement("div");
+        col.className = "col-4";
+        col.innerText = "Hello";
+        //smallest to largest 
+        row.appendChild("col");
+
 
     }
+    container.appendChild(row);
+    app.appendChild(container);
 }
 
-
-var Model = {
-
-}
-
-var Controller = {
-
-}
+//invoke function
+generateBoard();
