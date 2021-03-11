@@ -1,0 +1,8 @@
+body {
+    background-image: linear-gradient(rgb(145, 156, 145), lightgreen);
+}
+
+.header {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font: rgb(189, 205, 219);
+}
