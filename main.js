@@ -1,78 +1,91 @@
 
 var app = document.getElementById("app");
 console.log(app);
-const tiles = [];
 
 
-function init() {
-
-    //on start of program
-    generateBoard()
-}
-
-function generateBoard() {
-
-    const container = document.createElement("div");
-    container.className = "container mt-5";
-
-    const row = document.createElement("div");
-    row.className = "row p-4";
-
-    for (let index = 0; index < 9; index++) {
-        const col = document.createElement("div");
-        col.className = "col-4 p-2 border border-secondary";
-        col.setAttribute("id", index)
-        //smallest to largest 
-        row.appendChild(col);
-
-
-        let tileObject = new Tile(index);
-        tiles.push(tileObject);
-    }
-    console.log(tiles)
-
-    container.appendChild(row);
-    app.appendChild(container);
-}
-
-class Board {
-
-    //Model
-    constructor() { }
-
-
-
-    //View
-
-
-
-
-    //Controller
-
-
-}
 
 class Tile {
 
-    //Model
-    constructor(id) { 
-        this.id=id
-        //this.onclick = onclick(click)
+    constructor(id, tileHTML) {
+        this.id = id;
+        this.clicked = false;
+        this.tileHTML=tileHTML;
     }
-
-
-
-    //View
-
-
-
-    //Controller 
-
 
 
 
 }
 
 
+class Board {
 
-init()
+
+    constructor() {
+        this.turn = false
+        this.tilesArray = [];
+        this.count = 0;
+        this.player = ''
+    }
+    generateBoard() {
+
+        const container = document.createElement("div");
+        container.className = "container mt-5";
+
+        const row = document.createElement("div");
+        row.className = "row p-4";
+
+        for (let index = 0; index < 9; index++) {
+            const col = document.createElement("div");
+            col.className = "col-4 p-4 border border-secondary";
+            col.setAttribute("id", index)
+            let tileObject = new Tile(index, col);
+            col.addEventListener("click", this.clickTile.bind(this, tileObject));
+            this.tilesArray.push(tileObject);
+            row.appendChild(col);
+            container.appendChild(row);
+            app.appendChild(container);
+        }  
+        }
+
+        clickTile(obj) {
+            if (obj.clicked == false) {
+                obj.clicked = true
+                if (this.count % 2 === 0) {
+                    this.player = "X"
+                } else {
+                    this.player = "O"
+                }
+                    obj.tileHTML.innerText = this.player
+                    this.count++;
+                    console.log(this.player)
+                    console.log(this.tilesArray)
+                }
+            }
+
+    }   
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+        function init() {
+
+            let ticTacToeBoard = new Board()
+            console.log(ticTacToeBoard)
+            ticTacToeBoard.generateBoard()
+        }
+
+
+
+        init()
