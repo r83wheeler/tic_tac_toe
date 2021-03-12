@@ -26,6 +26,16 @@ class Board {
         this.count = 0;
         this.player = ''
     }
+    init(){
+
+        this.turn = false
+        this.tilesArray = [];
+        this.count = 0;
+        this.player = '';
+        app.innerHTML="";
+        this.generateBoard();
+
+    }
     generateBoard() {
 
         const container = document.createElement("div");
@@ -45,7 +55,9 @@ class Board {
             container.appendChild(row);
             app.appendChild(container);
         }  
-        }
+        document.getElementById("reset").addEventListener("click", this.resetGame.bind(this));
+
+    }
 
         clickTile(obj) {
             if (obj.clicked == false) {
@@ -59,8 +71,15 @@ class Board {
                     this.count++;
                     console.log(this.player)
                     console.log(this.tilesArray)
-                }
             }
+        }
+
+        
+
+        resetGame() {
+            init();
+
+        }
 
     }   
 
@@ -83,7 +102,7 @@ class Board {
 
             let ticTacToeBoard = new Board()
             console.log(ticTacToeBoard)
-            ticTacToeBoard.generateBoard()
+            ticTacToeBoard.init()
         }
 
 
